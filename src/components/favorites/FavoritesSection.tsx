@@ -6,7 +6,6 @@ import {
   Search,
   Trash2,
   Download,
-  Share2,
   Check,
   FolderHeart,
 } from "lucide-react";
@@ -15,7 +14,6 @@ import { ContentCard } from "@/components/feed/ContentCard";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   clearAllFavorites,
-  setFavoritesSearch,
 } from "@/store/slices/favoritesSlice";
 import { translations } from "@/lib/i18n";
 
@@ -63,9 +61,9 @@ export function FavoritesSection({ onOpenArticle }: FavoritesSectionProps) {
   return (
     <div className="space-y-6">
       {/* Top Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-xs">
-        <div className="flex items-center gap-3">
-          <div className="p-3 rounded-2xl bg-amber-500/10 text-amber-500">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 bg-white dark:bg-[#0a0f1d] border border-slate-200 dark:border-[#162238] rounded-3xl shadow-xs">
+        <div className="flex items-center gap-3.5">
+          <div className="p-3 rounded-2xl bg-amber-400/15 text-amber-400 border border-amber-400/25 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
             <Bookmark className="w-6 h-6 fill-current" />
           </div>
           <div>
@@ -83,18 +81,18 @@ export function FavoritesSection({ onOpenArticle }: FavoritesSectionProps) {
           <div className="flex items-center gap-2">
             <button
               onClick={handleExport}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 dark:bg-[#10182b] dark:hover:bg-[#18233c] dark:border dark:border-[#1c2944] text-slate-700 dark:text-slate-200 transition-colors"
               title="Export favorites as JSON"
             >
               {exported ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-emerald-500" />
+                  <Check className="w-3.5 h-3.5 text-emerald-400" />
                   <span>Exported!</span>
                 </>
               ) : (
                 <>
-                  <Download className="w-3.5 h-3.5" />
-                  <span>Export</span>
+                  <Download className="w-3.5 h-3.5 text-indigo-400" />
+                  <span>Export JSON</span>
                 </>
               )}
             </button>
@@ -105,7 +103,7 @@ export function FavoritesSection({ onOpenArticle }: FavoritesSectionProps) {
                   dispatch(clearAllFavorites());
                 }
               }}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 dark:border dark:border-rose-900/40 transition-colors"
               title="Clear all favorites"
             >
               <Trash2 className="w-3.5 h-3.5" />
@@ -119,7 +117,7 @@ export function FavoritesSection({ onOpenArticle }: FavoritesSectionProps) {
       {items.length > 0 && (
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
           {/* Type filters */}
-          <div className="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-slate-800/80 rounded-xl border border-slate-200/60 dark:border-slate-700/60 w-full sm:w-auto">
+          <div className="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-[#090f1d] rounded-2xl border border-slate-200/60 dark:border-[#162238] w-full sm:w-auto shadow-inner">
             {(
               [
                 { id: "all", label: "All Items" },
@@ -131,10 +129,10 @@ export function FavoritesSection({ onOpenArticle }: FavoritesSectionProps) {
               <button
                 key={tab.id}
                 onClick={() => setFilterType(tab.id)}
-                className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+                className={`flex-1 sm:flex-initial px-3.5 py-1.5 text-xs font-semibold rounded-xl transition-all ${
                   filterType === tab.id
-                    ? "bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 shadow-xs"
-                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                    ? "bg-white dark:bg-gradient-to-r dark:from-indigo-600 dark:to-purple-600 text-indigo-600 dark:text-white shadow-md dark:shadow-indigo-600/30"
+                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200"
                 }`}
               >
                 {tab.label}
@@ -144,13 +142,13 @@ export function FavoritesSection({ onOpenArticle }: FavoritesSectionProps) {
 
           {/* Search inside favorites */}
           <div className="relative w-full sm:w-64">
-            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-indigo-400/80" />
             <input
               type="text"
               value={localSearch}
               onChange={(e) => setLocalSearch(e.target.value)}
               placeholder="Filter saved items..."
-              className="w-full pl-9 pr-3 py-1.5 text-xs bg-slate-100 dark:bg-slate-800 rounded-xl border border-transparent focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 text-slate-900 dark:text-white outline-none transition-all"
+              className="w-full pl-9 pr-3 py-1.5 text-xs bg-slate-100 dark:bg-[#0b101f] rounded-xl border border-transparent dark:border-[#182338] focus:border-indigo-500 focus:bg-white dark:focus:bg-[#0e1628] text-slate-900 dark:text-slate-100 outline-none transition-all shadow-inner"
             />
           </div>
         </div>
@@ -168,8 +166,8 @@ export function FavoritesSection({ onOpenArticle }: FavoritesSectionProps) {
           ))}
         </div>
       ) : (
-        <div className="p-16 text-center bg-white dark:bg-slate-900 border border-dashed border-slate-200 dark:border-slate-800 rounded-3xl">
-          <div className="w-14 h-14 mx-auto mb-3 rounded-full bg-amber-500/10 text-amber-500 flex items-center justify-center">
+        <div className="p-16 text-center bg-white dark:bg-[#0a0f1d] border border-dashed border-slate-200 dark:border-[#162238] rounded-3xl">
+          <div className="w-14 h-14 mx-auto mb-3 rounded-full bg-amber-400/10 text-amber-400 border border-amber-400/20 flex items-center justify-center shadow-[0_0_15px_rgba(245,158,11,0.15)]">
             <FolderHeart className="w-7 h-7" />
           </div>
           <h4 className="text-base font-bold text-slate-800 dark:text-slate-200 mb-1">

@@ -114,11 +114,11 @@ export function FeedList({ onOpenArticle, isDragMode }: FeedListProps) {
   // Empty state
   if (items.length === 0) {
     return (
-      <div className="p-12 text-center bg-white dark:bg-slate-900 border border-dashed border-slate-300 dark:border-slate-800 rounded-2xl">
-        <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400">
+      <div className="p-12 text-center bg-white dark:bg-[#0a0f1d] border border-dashed border-slate-300 dark:border-[#162238] rounded-3xl">
+        <div className="w-12 h-12 mx-auto mb-3 rounded-2xl bg-indigo-500/10 dark:bg-indigo-500/15 text-indigo-400 border border-indigo-500/20 flex items-center justify-center">
           <Inbox className="w-6 h-6" />
         </div>
-        <h4 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-1">
+        <h4 className="text-base font-bold text-slate-800 dark:text-slate-100 mb-1">
           {t.noContentFound}
         </h4>
         <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm mx-auto">
@@ -148,7 +148,7 @@ export function FeedList({ onOpenArticle, isDragMode }: FeedListProps) {
               key={item.id}
               value={item}
               className="cursor-grab active:cursor-grabbing"
-              whileDrag={{ scale: 1.02, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.2)" }}
+              whileDrag={{ scale: 1.02, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.4)" }}
             >
               <ContentCard
                 item={item}
@@ -179,12 +179,12 @@ export function FeedList({ onOpenArticle, isDragMode }: FeedListProps) {
         <div ref={observerTarget} className="py-6 text-center">
           {infiniteDisplayCount < items.length ? (
             <div className="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
-              <Loader2 className="w-4 h-4 animate-spin text-blue-500" />
+              <Loader2 className="w-4 h-4 animate-spin text-indigo-400" />
               <span>Loading more stories...</span>
             </div>
           ) : (
-            <div className="text-xs text-slate-400 dark:text-slate-500 flex items-center justify-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-blue-500" />
+            <div className="text-xs text-slate-400 dark:text-slate-500 flex items-center justify-center gap-1.5 font-medium">
+              <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
               <span>You're all caught up with your personalized stream</span>
             </div>
           )}
@@ -193,16 +193,16 @@ export function FeedList({ onOpenArticle, isDragMode }: FeedListProps) {
 
       {/* Standard Pagination Controls */}
       {paginationMode === "pagination" && !isDragMode && totalPages > 1 && (
-        <div className="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800">
+        <div className="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-[#141e30]">
           <p className="text-xs text-slate-500 dark:text-slate-400">
-            {t.page} <span className="font-semibold">{currentPage}</span> {t.of}{" "}
-            <span className="font-semibold">{totalPages}</span> ({items.length} items)
+            {t.page} <span className="font-semibold text-slate-900 dark:text-slate-200">{currentPage}</span> {t.of}{" "}
+            <span className="font-semibold text-slate-900 dark:text-slate-200">{totalPages}</span> ({items.length} items)
           </p>
           <div className="flex items-center gap-2">
             <button
               onClick={() => dispatch(setCurrentPage(Math.max(currentPage - 1, 1)))}
               disabled={currentPage === 1}
-              className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              className="p-2 rounded-xl border border-slate-200 dark:border-[#182640] dark:bg-[#0c1220] text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#141d31] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               aria-label="Previous page"
             >
               <ChevronLeft className="w-4 h-4" />
@@ -222,10 +222,10 @@ export function FeedList({ onOpenArticle, isDragMode }: FeedListProps) {
                     <button
                       key={pageNum}
                       onClick={() => dispatch(setCurrentPage(pageNum))}
-                      className={`w-8 h-8 rounded-lg text-xs font-semibold transition-colors ${
+                      className={`w-8 h-8 rounded-xl text-xs font-bold transition-all ${
                         currentPage === pageNum
-                          ? "bg-blue-600 text-white"
-                          : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
+                          ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md shadow-indigo-600/30"
+                          : "text-slate-600 dark:text-slate-400 dark:bg-[#0c1220] dark:border dark:border-[#182640] hover:bg-slate-100 dark:hover:bg-[#141d31] hover:dark:text-slate-200"
                       }`}
                     >
                       {pageNum}
@@ -246,7 +246,7 @@ export function FeedList({ onOpenArticle, isDragMode }: FeedListProps) {
             <button
               onClick={() => dispatch(setCurrentPage(Math.min(currentPage + 1, totalPages)))}
               disabled={currentPage === totalPages}
-              className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              className="p-2 rounded-xl border border-slate-200 dark:border-[#182640] dark:bg-[#0c1220] text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#141d31] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               aria-label="Next page"
             >
               <ChevronRight className="w-4 h-4" />

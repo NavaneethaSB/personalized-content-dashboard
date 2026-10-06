@@ -10,7 +10,6 @@ import {
   BarChart2,
   Settings,
   Sparkles,
-  Radio,
 } from "lucide-react";
 import { ActiveTab } from "@/types";
 import { useAppSelector } from "@/store/hooks";
@@ -37,9 +36,9 @@ export function MobileNav({
 
   const navItems: { id: ActiveTab; label: string; icon: React.ReactNode; badge?: number }[] = [
     { id: "feed", label: t.feed, icon: <LayoutDashboard className="w-5 h-5" /> },
-    { id: "trending", label: t.trending, icon: <Flame className="w-5 h-5 text-amber-500" /> },
-    { id: "favorites", label: t.favorites, icon: <Bookmark className="w-5 h-5 text-blue-500" />, badge: favoriteCount },
-    { id: "analytics", label: t.analytics, icon: <BarChart2 className="w-5 h-5 text-emerald-500" /> },
+    { id: "trending", label: t.trending, icon: <Flame className="w-5 h-5 text-amber-400" /> },
+    { id: "favorites", label: t.favorites, icon: <Bookmark className="w-5 h-5 text-cyan-400" />, badge: favoriteCount },
+    { id: "analytics", label: t.analytics, icon: <BarChart2 className="w-5 h-5 text-emerald-400" /> },
   ];
 
   return (
@@ -52,7 +51,7 @@ export function MobileNav({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/60 backdrop-blur-xs"
+            className="fixed inset-0 bg-black/80 backdrop-blur-md"
           />
 
           {/* Drawer */}
@@ -61,19 +60,19 @@ export function MobileNav({
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 250 }}
-            className="relative w-72 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 h-full p-5 flex flex-col z-10"
+            className="relative w-72 bg-white dark:bg-[#060913] border-r border-slate-200 dark:border-[#141e30] h-full p-5 flex flex-col z-10 shadow-2xl"
           >
             {/* Header */}
-            <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+            <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-[#141e30]">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-linear-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md">
+                <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-cyan-400 flex items-center justify-center text-white shadow-md shadow-indigo-500/25">
                   <Sparkles className="w-4 h-4" />
                 </div>
-                <span className="font-bold text-slate-900 dark:text-white">PulseHub</span>
+                <span className="font-extrabold bg-gradient-to-r from-white via-indigo-100 to-cyan-200 bg-clip-text text-transparent">PulseHub</span>
               </div>
               <button
                 onClick={onClose}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                className="p-1.5 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#121a2d]"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -92,8 +91,8 @@ export function MobileNav({
                     }}
                     className={`w-full flex items-center justify-between p-3 rounded-xl text-sm font-semibold transition-all ${
                       isActive
-                        ? "bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400"
-                        : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
+                        ? "bg-gradient-to-r from-indigo-500/15 via-purple-500/10 to-transparent text-indigo-400 border-l-2 border-indigo-400"
+                        : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-[#101726] hover:text-white"
                     }`}
                   >
                     <div className="flex items-center gap-3">
@@ -101,7 +100,7 @@ export function MobileNav({
                       <span>{item.label}</span>
                     </div>
                     {item.badge !== undefined && item.badge > 0 && (
-                      <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300">
+                      <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
                         {item.badge}
                       </span>
                     )}
@@ -116,7 +115,7 @@ export function MobileNav({
                 onClose();
                 onOpenSettings();
               }}
-              className="flex items-center gap-3 p-3 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 border-t border-slate-100 dark:border-slate-800"
+              className="flex items-center gap-3 p-3 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-[#101726] border-t border-slate-100 dark:border-[#141e30]"
             >
               <Settings className="w-5 h-5" />
               <span>{t.settings}</span>

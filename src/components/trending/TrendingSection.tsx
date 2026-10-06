@@ -6,8 +6,6 @@ import {
   Newspaper,
   Film,
   Users,
-  TrendingUp,
-  Sparkles,
 } from "lucide-react";
 import { ContentItem, ContentCategory } from "@/types";
 import { ContentCard } from "@/components/feed/ContentCard";
@@ -43,32 +41,32 @@ export function TrendingSection({ onOpenArticle }: TrendingSectionProps) {
   return (
     <div className="space-y-8">
       {/* Header Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-linear-to-r from-blue-600 via-indigo-600 to-purple-600 p-6 sm:p-8 text-white shadow-xl">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#0b0e22] via-[#151036] to-[#200e36] border border-indigo-500/30 p-6 sm:p-8 text-white shadow-2xl shadow-indigo-950/60">
         <div className="relative z-10 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold mb-3">
-            <Flame className="w-4 h-4 text-amber-300" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 border border-indigo-400/30 backdrop-blur-md text-xs font-bold text-indigo-300 mb-3 shadow-[0_0_12px_rgba(99,102,241,0.25)]">
+            <Flame className="w-4 h-4 text-amber-400" />
             <span>Real-Time Engagement Radar</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2">
+          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2 bg-gradient-to-r from-white via-indigo-100 to-cyan-200 bg-clip-text text-transparent">
             Trending Across the Web
           </h2>
-          <p className="text-sm sm:text-base text-blue-100">
+          <p className="text-sm sm:text-base text-slate-300">
             Real-time viral stories, highest-rated cinematic recommendations, and top community discussions curated by algorithm score.
           </p>
         </div>
-        <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-white/10 rounded-full blur-2xl pointer-events-none" />
+        <div className="absolute -right-10 -bottom-10 w-72 h-72 bg-gradient-to-tr from-indigo-500/20 to-purple-500/20 rounded-full blur-3xl pointer-events-none" />
       </div>
 
       {/* Category selector */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-1">
+      <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
         {categories.map((cat) => (
           <button
             key={cat.id}
             onClick={() => dispatch(setTrendingCategory(cat.id))}
             className={`px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
               activeCategory === cat.id
-                ? "bg-blue-600 text-white shadow-xs"
-                : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700"
+                ? "bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-500 text-white shadow-md shadow-indigo-500/25"
+                : "bg-slate-100 dark:bg-[#0a0f1d] border border-transparent dark:border-[#152033] text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-[#121a2d] hover:dark:border-indigo-500/40 hover:dark:text-slate-200"
             }`}
           >
             {cat.label}
@@ -87,8 +85,8 @@ export function TrendingSection({ onOpenArticle }: TrendingSectionProps) {
           {/* Section 1: Trending News */}
           {topNews.length > 0 && (
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="p-2 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.15)]">
                   <Newspaper className="w-5 h-5" />
                 </div>
                 <div>
@@ -115,8 +113,8 @@ export function TrendingSection({ onOpenArticle }: TrendingSectionProps) {
           {/* Section 2: Top Recommendations */}
           {topRecommendations.length > 0 && (
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="p-2 rounded-xl bg-purple-100 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2.5 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.15)]">
                   <Film className="w-5 h-5" />
                 </div>
                 <div>
@@ -143,8 +141,8 @@ export function TrendingSection({ onOpenArticle }: TrendingSectionProps) {
           {/* Section 3: Viral Social Discussions */}
           {topSocial.length > 0 && (
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="p-2 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.15)]">
                   <Users className="w-5 h-5" />
                 </div>
                 <div>

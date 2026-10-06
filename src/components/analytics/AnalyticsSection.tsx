@@ -3,13 +3,10 @@
 import React from "react";
 import {
   BarChart3,
-  TrendingUp,
   Bookmark,
-  Clock,
-  Sparkles,
   Layers,
   Heart,
-  Eye,
+  Sparkles,
 } from "lucide-react";
 import { useAppSelector } from "@/store/hooks";
 
@@ -36,83 +33,91 @@ export function AnalyticsSection() {
     <div className="space-y-6">
       {/* Overview Stat Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
-          <div className="flex items-center justify-between text-blue-600 dark:text-blue-400 mb-2">
-            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+        <div className="p-5 rounded-2xl bg-white dark:bg-[#0a0f1d] border border-slate-200 dark:border-[#162238] shadow-xs hover:dark:border-indigo-500/40 transition-colors">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
               Active Stream Items
             </span>
-            <Layers className="w-5 h-5" />
+            <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+              <Layers className="w-4 h-4" />
+            </div>
           </div>
-          <div className="text-2xl font-bold text-slate-900 dark:text-white">
+          <div className="text-2xl font-black text-slate-900 dark:text-white">
             {feedItems.length}
           </div>
-          <p className="text-xs text-slate-500 mt-1">Multi-source synchronized</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Multi-source synchronized</p>
         </div>
 
-        <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
-          <div className="flex items-center justify-between text-amber-500 mb-2">
-            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+        <div className="p-5 rounded-2xl bg-white dark:bg-[#0a0f1d] border border-slate-200 dark:border-[#162238] shadow-xs hover:dark:border-amber-500/40 transition-colors">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
               Curated Favorites
             </span>
-            <Bookmark className="w-5 h-5" />
+            <div className="p-2 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
+              <Bookmark className="w-4 h-4" />
+            </div>
           </div>
-          <div className="text-2xl font-bold text-slate-900 dark:text-white">
+          <div className="text-2xl font-black text-slate-900 dark:text-white">
             {favoriteItems.length}
           </div>
-          <p className="text-xs text-slate-500 mt-1">Persisted locally</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Persisted in local storage</p>
         </div>
 
-        <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
-          <div className="flex items-center justify-between text-rose-500 mb-2">
-            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+        <div className="p-5 rounded-2xl bg-white dark:bg-[#0a0f1d] border border-slate-200 dark:border-[#162238] shadow-xs hover:dark:border-rose-500/40 transition-colors">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
               Community Engagement
             </span>
-            <Heart className="w-5 h-5" />
+            <div className="p-2 rounded-xl bg-rose-500/10 text-rose-400 border border-rose-500/20">
+              <Heart className="w-4 h-4" />
+            </div>
           </div>
-          <div className="text-2xl font-bold text-slate-900 dark:text-white">
+          <div className="text-2xl font-black text-slate-900 dark:text-white">
             {(totalLikes / 1000).toFixed(1)}k
           </div>
-          <p className="text-xs text-slate-500 mt-1">Total aggregated likes</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Aggregated reactions</p>
         </div>
 
-        <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
-          <div className="flex items-center justify-between text-emerald-500 mb-2">
-            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+        <div className="p-5 rounded-2xl bg-white dark:bg-[#0a0f1d] border border-slate-200 dark:border-[#162238] shadow-xs hover:dark:border-cyan-500/40 transition-colors">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
               Topics Configured
             </span>
-            <Sparkles className="w-5 h-5" />
+            <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+              <Sparkles className="w-4 h-4" />
+            </div>
           </div>
-          <div className="text-2xl font-bold text-slate-900 dark:text-white">
+          <div className="text-2xl font-black text-slate-900 dark:text-white">
             {preferredCategories.length} / 6
           </div>
-          <p className="text-xs text-slate-500 mt-1">Personalized algorithm</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Personalized algorithm</p>
         </div>
       </div>
 
       {/* Distribution Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Category distribution */}
-        <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-4">
+        <div className="p-6 rounded-3xl bg-white dark:bg-[#0a0f1d] border border-slate-200 dark:border-[#162238] shadow-xs space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-base font-bold text-slate-900 dark:text-white">
               Category Distribution in Feed
             </h3>
-            <BarChart3 className="w-5 h-5 text-slate-400" />
+            <BarChart3 className="w-5 h-5 text-indigo-400" />
           </div>
-          <div className="space-y-3 pt-2">
+          <div className="space-y-3.5 pt-2">
             {Object.entries(categoryCounts).map(([cat, count]) => {
               const percentage = Math.round((count / (feedItems.length || 1)) * 100);
               return (
-                <div key={cat} className="space-y-1">
+                <div key={cat} className="space-y-1.5">
                   <div className="flex justify-between text-xs">
-                    <span className="font-semibold capitalize text-slate-700 dark:text-slate-300">
+                    <span className="font-semibold capitalize text-slate-700 dark:text-slate-200">
                       {cat}
                     </span>
-                    <span className="text-slate-500">{count} items ({percentage}%)</span>
+                    <span className="text-slate-500 dark:text-slate-400">{count} items ({percentage}%)</span>
                   </div>
-                  <div className="w-full h-2.5 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                  <div className="w-full h-2 rounded-full bg-slate-100 dark:bg-[#121929] overflow-hidden">
                     <div
-                      className="h-full rounded-full bg-blue-600 transition-all duration-500"
+                      className="h-full rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 transition-all duration-700"
                       style={{ width: `${percentage}%` }}
                     />
                   </div>
@@ -123,24 +128,24 @@ export function AnalyticsSection() {
         </div>
 
         {/* Favorites Breakdown */}
-        <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-4">
+        <div className="p-6 rounded-3xl bg-white dark:bg-[#0a0f1d] border border-slate-200 dark:border-[#162238] shadow-xs space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-base font-bold text-slate-900 dark:text-white">
               Favorites Source Breakdown
             </h3>
-            <Bookmark className="w-5 h-5 text-amber-500" />
+            <Bookmark className="w-5 h-5 text-amber-400" />
           </div>
-          <div className="space-y-3 pt-2">
-            <div className="space-y-1">
+          <div className="space-y-3.5 pt-2">
+            <div className="space-y-1.5">
               <div className="flex justify-between text-xs">
-                <span className="font-semibold text-slate-700 dark:text-slate-300">
+                <span className="font-semibold text-slate-700 dark:text-slate-200">
                   News Articles
                 </span>
-                <span className="text-slate-500">{favNews} saved</span>
+                <span className="text-slate-500 dark:text-slate-400">{favNews} saved</span>
               </div>
-              <div className="w-full h-2.5 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+              <div className="w-full h-2 rounded-full bg-slate-100 dark:bg-[#121929] overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-blue-500"
+                  className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-blue-500"
                   style={{
                     width: `${favoriteItems.length ? (favNews / favoriteItems.length) * 100 : 0}%`,
                   }}
@@ -148,16 +153,16 @@ export function AnalyticsSection() {
               </div>
             </div>
 
-            <div className="space-y-1">
+            <div className="space-y-1.5">
               <div className="flex justify-between text-xs">
-                <span className="font-semibold text-slate-700 dark:text-slate-300">
+                <span className="font-semibold text-slate-700 dark:text-slate-200">
                   Movie & Show Recommendations
                 </span>
-                <span className="text-slate-500">{favRecs} saved</span>
+                <span className="text-slate-500 dark:text-slate-400">{favRecs} saved</span>
               </div>
-              <div className="w-full h-2.5 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+              <div className="w-full h-2 rounded-full bg-slate-100 dark:bg-[#121929] overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-purple-500"
+                  className="h-full rounded-full bg-gradient-to-r from-purple-500 to-pink-500"
                   style={{
                     width: `${favoriteItems.length ? (favRecs / favoriteItems.length) * 100 : 0}%`,
                   }}
@@ -165,16 +170,16 @@ export function AnalyticsSection() {
               </div>
             </div>
 
-            <div className="space-y-1">
+            <div className="space-y-1.5">
               <div className="flex justify-between text-xs">
-                <span className="font-semibold text-slate-700 dark:text-slate-300">
+                <span className="font-semibold text-slate-700 dark:text-slate-200">
                   Social Discussions
                 </span>
-                <span className="text-slate-500">{favSocial} saved</span>
+                <span className="text-slate-500 dark:text-slate-400">{favSocial} saved</span>
               </div>
-              <div className="w-full h-2.5 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+              <div className="w-full h-2 rounded-full bg-slate-100 dark:bg-[#121929] overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-emerald-500"
+                  className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400"
                   style={{
                     width: `${favoriteItems.length ? (favSocial / favoriteItems.length) * 100 : 0}%`,
                   }}

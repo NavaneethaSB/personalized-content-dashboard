@@ -62,7 +62,12 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="flex h-screen w-full bg-[var(--background)] text-[var(--foreground)] overflow-hidden">
+    <div className="relative flex h-screen w-full bg-[var(--background)] text-[var(--foreground)] overflow-hidden">
+      {/* Ambient background glows for ultra-premium dark aesthetic */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-indigo-600/10 dark:bg-indigo-500/[0.07] rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/3 right-10 w-[450px] h-[450px] bg-purple-600/10 dark:bg-purple-500/[0.05] rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 left-1/3 w-[350px] h-[350px] bg-cyan-600/10 dark:bg-cyan-500/[0.04] rounded-full blur-[120px] pointer-events-none" />
+
       {/* Collapsible Desktop Sidebar */}
       <Sidebar
         activeTab={activeTab}
@@ -82,7 +87,7 @@ export default function DashboardPage() {
       />
 
       {/* Main Content Area */}
-      <div className="flex flex-col flex-1 h-full min-w-0 overflow-hidden">
+      <div className="flex flex-col flex-1 h-full min-w-0 overflow-hidden relative z-10">
         {/* Header Bar */}
         <Header
           onOpenSettings={() => setIsSettingsOpen(true)}

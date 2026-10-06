@@ -3,24 +3,17 @@
 import React, { useState } from "react";
 import { Modal } from "@/components/common/Modal";
 import {
-  Sliders,
   Check,
   RotateCcw,
   Key,
-  Globe,
-  LayoutGrid,
-  SunMoon,
-  Sparkles,
 } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   toggleCategory,
   toggleSource,
   setTheme,
-  setDensity,
   setViewMode,
   setPaginationMode,
-  setItemsPerPage,
   setLanguage,
   setCustomApiKeys,
   resetPreferences,
@@ -85,7 +78,7 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
       <div className="space-y-6">
         {/* Category Preferences */}
         <div>
-          <h4 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-1">
+          <h4 className="text-xs font-bold text-slate-900 dark:text-indigo-300 uppercase tracking-wider mb-1">
             {t.categories}
           </h4>
           <p className="text-xs text-slate-500 dark:text-slate-400 mb-3">
@@ -101,17 +94,17 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                     dispatch(toggleCategory(cat.id));
                     dispatch(fetchDashboardFeed());
                   }}
-                  className={`flex items-start gap-3 p-3 rounded-xl border text-left transition-all ${
+                  className={`flex items-start gap-3 p-3 rounded-2xl border text-left transition-all ${
                     isSelected
-                      ? "border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 text-blue-900 dark:text-blue-100"
-                      : "border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 text-slate-700 dark:text-slate-300"
+                      ? "border-indigo-500/60 bg-indigo-500/10 dark:bg-indigo-500/15 text-indigo-900 dark:text-white shadow-xs dark:shadow-[0_0_15px_rgba(99,102,241,0.15)]"
+                      : "border-slate-200 dark:border-[#162238] dark:bg-[#0a0f1d] hover:border-slate-300 dark:hover:border-[#223555] text-slate-700 dark:text-slate-300"
                   }`}
                 >
                   <div
                     className={`mt-0.5 w-4 h-4 rounded-md flex items-center justify-center border transition-colors ${
                       isSelected
-                        ? "bg-blue-600 border-blue-600 text-white"
-                        : "border-slate-300 dark:border-slate-700"
+                        ? "bg-indigo-600 border-indigo-600 text-white shadow-xs"
+                        : "border-slate-300 dark:border-[#223555]"
                     }`}
                   >
                     {isSelected && <Check className="w-3 h-3 stroke-[3]" />}
@@ -129,8 +122,8 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
         </div>
 
         {/* Content Sources */}
-        <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
-          <h4 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-1">
+        <div className="pt-4 border-t border-slate-100 dark:border-[#141e30]">
+          <h4 className="text-xs font-bold text-slate-900 dark:text-indigo-300 uppercase tracking-wider mb-1">
             {t.sources}
           </h4>
           <p className="text-xs text-slate-500 dark:text-slate-400 mb-3">
@@ -150,14 +143,14 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                     dispatch(toggleSource(src.id));
                     dispatch(fetchDashboardFeed());
                   }}
-                  className={`p-3 rounded-xl border text-center transition-all ${
+                  className={`p-3 rounded-2xl border text-center transition-all ${
                     isEnabled
-                      ? "border-blue-500 bg-blue-50/40 dark:bg-blue-950/30 text-blue-900 dark:text-blue-100 font-semibold"
-                      : "border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 opacity-60"
+                      ? "border-indigo-500/60 bg-indigo-500/10 dark:bg-indigo-500/15 text-indigo-900 dark:text-white font-semibold dark:shadow-[0_0_15px_rgba(99,102,241,0.15)]"
+                      : "border-slate-200 dark:border-[#162238] dark:bg-[#0a0f1d] text-slate-500 dark:text-slate-500 opacity-60"
                   }`}
                 >
                   <div className="text-xs">{src.label}</div>
-                  <div className="text-[10px] text-slate-400 mt-0.5">{src.desc}</div>
+                  <div className="text-[10px] text-slate-400 dark:text-slate-500 mt-0.5">{src.desc}</div>
                 </button>
               );
             })}
@@ -165,18 +158,18 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
         </div>
 
         {/* UI Layout & Pagination Options */}
-        <div className="pt-4 border-t border-slate-100 dark:border-slate-800 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="pt-4 border-t border-slate-100 dark:border-[#141e30] grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Display Mode */}
           <div>
-            <label className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 block mb-2">
+            <label className="text-[11px] font-bold uppercase tracking-wider text-slate-700 dark:text-indigo-300 block mb-2">
               Feed Display Mode
             </label>
-            <div className="flex rounded-xl bg-slate-100 dark:bg-slate-800 p-1">
+            <div className="flex rounded-2xl bg-slate-100 dark:bg-[#080d1a] border border-transparent dark:border-[#141f33] p-1 shadow-inner">
               <button
                 onClick={() => dispatch(setViewMode("grid"))}
-                className={`flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+                className={`flex-1 py-1.5 text-xs font-semibold rounded-xl transition-all ${
                   prefs.viewMode === "grid"
-                    ? "bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 shadow-xs"
+                    ? "bg-white dark:bg-gradient-to-r dark:from-indigo-600 dark:to-purple-600 text-indigo-600 dark:text-white shadow-md dark:shadow-indigo-600/30"
                     : "text-slate-600 dark:text-slate-400"
                 }`}
               >
@@ -184,9 +177,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
               </button>
               <button
                 onClick={() => dispatch(setViewMode("list"))}
-                className={`flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+                className={`flex-1 py-1.5 text-xs font-semibold rounded-xl transition-all ${
                   prefs.viewMode === "list"
-                    ? "bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 shadow-xs"
+                    ? "bg-white dark:bg-gradient-to-r dark:from-indigo-600 dark:to-purple-600 text-indigo-600 dark:text-white shadow-md dark:shadow-indigo-600/30"
                     : "text-slate-600 dark:text-slate-400"
                 }`}
               >
@@ -197,15 +190,15 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
 
           {/* Pagination Mode */}
           <div>
-            <label className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 block mb-2">
+            <label className="text-[11px] font-bold uppercase tracking-wider text-slate-700 dark:text-indigo-300 block mb-2">
               Pagination Style
             </label>
-            <div className="flex rounded-xl bg-slate-100 dark:bg-slate-800 p-1">
+            <div className="flex rounded-2xl bg-slate-100 dark:bg-[#080d1a] border border-transparent dark:border-[#141f33] p-1 shadow-inner">
               <button
                 onClick={() => dispatch(setPaginationMode("infinite"))}
-                className={`flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+                className={`flex-1 py-1.5 text-xs font-semibold rounded-xl transition-all ${
                   prefs.paginationMode === "infinite"
-                    ? "bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 shadow-xs"
+                    ? "bg-white dark:bg-gradient-to-r dark:from-indigo-600 dark:to-purple-600 text-indigo-600 dark:text-white shadow-md dark:shadow-indigo-600/30"
                     : "text-slate-600 dark:text-slate-400"
                 }`}
               >
@@ -213,9 +206,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
               </button>
               <button
                 onClick={() => dispatch(setPaginationMode("pagination"))}
-                className={`flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+                className={`flex-1 py-1.5 text-xs font-semibold rounded-xl transition-all ${
                   prefs.paginationMode === "pagination"
-                    ? "bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 shadow-xs"
+                    ? "bg-white dark:bg-gradient-to-r dark:from-indigo-600 dark:to-purple-600 text-indigo-600 dark:text-white shadow-md dark:shadow-indigo-600/30"
                     : "text-slate-600 dark:text-slate-400"
                 }`}
               >
@@ -226,10 +219,10 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
         </div>
 
         {/* Theme & Language */}
-        <div className="pt-4 border-t border-slate-100 dark:border-slate-800 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="pt-4 border-t border-slate-100 dark:border-[#141e30] grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Theme */}
           <div>
-            <label className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 block mb-2">
+            <label className="text-[11px] font-bold uppercase tracking-wider text-slate-700 dark:text-indigo-300 block mb-2">
               Color Theme
             </label>
             <div className="grid grid-cols-3 gap-2">
@@ -243,8 +236,8 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                   onClick={() => handleThemeChange(th.id)}
                   className={`py-1.5 text-xs font-semibold rounded-xl border transition-all ${
                     prefs.theme === th.id
-                      ? "border-blue-500 bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400"
-                      : "border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400"
+                      ? "border-indigo-500/60 bg-indigo-500/15 text-indigo-600 dark:text-indigo-300 shadow-xs"
+                      : "border-slate-200 dark:border-[#162238] dark:bg-[#0a0f1d] text-slate-600 dark:text-slate-400"
                   }`}
                 >
                   {th.label}
@@ -255,13 +248,13 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
 
           {/* Language switcher */}
           <div>
-            <label className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 block mb-2">
+            <label className="text-[11px] font-bold uppercase tracking-wider text-slate-700 dark:text-indigo-300 block mb-2">
               Language (i18n)
             </label>
             <select
               value={prefs.language}
               onChange={(e) => dispatch(setLanguage(e.target.value as Language))}
-              className="w-full px-3 py-2 text-xs bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white outline-none focus:border-blue-500"
+              className="w-full px-3 py-2 text-xs bg-slate-100 dark:bg-[#0a0f1d] border border-slate-200 dark:border-[#162238] rounded-xl text-slate-900 dark:text-white outline-none focus:border-indigo-500"
             >
               <option value="en">English (US)</option>
               <option value="es">Español (Spanish)</option>
@@ -273,49 +266,49 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
         </div>
 
         {/* Custom API Keys Configuration */}
-        <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-3">
+        <div className="pt-4 border-t border-slate-100 dark:border-[#141e30] space-y-3">
           <div className="flex items-center gap-2">
-            <Key className="w-4 h-4 text-blue-500" />
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+            <Key className="w-4 h-4 text-indigo-400" />
+            <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-700 dark:text-indigo-300">
               Custom API Keys (Optional)
             </h4>
           </div>
-          <p className="text-[11px] text-slate-500">
+          <p className="text-[11px] text-slate-500 dark:text-slate-400">
             Out of the box, PulseHub connects to TVMaze, Hacker News, and Reddit APIs without requiring any key. You may also provide your personal keys below.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="text-[11px] text-slate-500 block mb-1">NewsAPI Key</label>
+              <label className="text-[11px] text-slate-500 dark:text-slate-400 block mb-1">NewsAPI Key</label>
               <input
                 type="password"
                 value={newsKey}
                 onChange={(e) => setNewsKey(e.target.value)}
                 placeholder="e.g. 8fa12c..."
-                className="w-full px-3 py-1.5 text-xs bg-slate-100 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white outline-none focus:border-blue-500"
+                className="w-full px-3 py-1.5 text-xs bg-slate-100 dark:bg-[#080d1a] rounded-xl border border-slate-200 dark:border-[#182640] text-slate-900 dark:text-slate-100 outline-none focus:border-indigo-500 shadow-inner"
               />
             </div>
             <div>
-              <label className="text-[11px] text-slate-500 block mb-1">TMDB API Key</label>
+              <label className="text-[11px] text-slate-500 dark:text-slate-400 block mb-1">TMDB API Key</label>
               <input
                 type="password"
                 value={tmdbKey}
                 onChange={(e) => setTmdbKey(e.target.value)}
                 placeholder="e.g. 43a29b..."
-                className="w-full px-3 py-1.5 text-xs bg-slate-100 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white outline-none focus:border-blue-500"
+                className="w-full px-3 py-1.5 text-xs bg-slate-100 dark:bg-[#080d1a] rounded-xl border border-slate-200 dark:border-[#182640] text-slate-900 dark:text-slate-100 outline-none focus:border-indigo-500 shadow-inner"
               />
             </div>
           </div>
           <button
             onClick={handleSaveApiKeys}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:opacity-90 transition-opacity"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white shadow-md shadow-indigo-600/30 transition-all active:scale-95"
           >
-            {savedSuccess ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : null}
+            {savedSuccess ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : null}
             <span>{savedSuccess ? "Saved Successfully" : "Apply Keys"}</span>
           </button>
         </div>
 
         {/* Footer Actions */}
-        <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <div className="pt-4 border-t border-slate-100 dark:border-[#141e30] flex items-center justify-between">
           <button
             onClick={() => {
               if (window.confirm("Reset all settings to default configuration?")) {
@@ -323,7 +316,7 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                 dispatch(fetchDashboardFeed());
               }
             }}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-rose-600 hover:text-rose-700 transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-rose-500 hover:text-rose-400 transition-colors"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>Reset Defaults</span>
@@ -331,7 +324,7 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
 
           <button
             onClick={onClose}
-            className="px-5 py-2 rounded-xl text-xs font-bold bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-xs"
+            className="px-5 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white transition-all shadow-md shadow-indigo-600/30 active:scale-95"
           >
             Done
           </button>
